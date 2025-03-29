@@ -19,31 +19,52 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Profile Icon
-              CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.pink[100],
-                child: Icon(
-                  Icons.person_outline,
-                  size: 50,
-                  color: Colors.brown,
+              // Wizard Image
+              Image.asset(
+                'assets/magician.png', // Replace with your magician image path
+                width: 150,
+                height: 150,
+              ),
+              SizedBox(height: 20),
+
+              // Login Title
+              Text(
+                'Login',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 30),
 
-              // Employee ID Text Field
+              // Email Label
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Email',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
+              // Email Text Field
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Employee ID',
+                  hintText: 'example@gmail.com',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
+              // Password Label
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Password',
+                  style: TextStyle(fontSize: 14),
+                ),
+              ),
               // Password Text Field
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Password',
                   border: OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -58,16 +79,56 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 obscureText: _obscurePassword,
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 20),
+
+              // Or separator
+              Row(
+                children: <Widget>[
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('or'),
+                  ),
+                  Expanded(child: Divider()),
+                ],
+              ),
+              SizedBox(height: 20),
+
+              // Social Login Options
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.image), // Placeholder icon
+                    onPressed: () {
+                      // TODO: Implement Google login
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.image), // Placeholder icon
+                    onPressed: () {
+                      // TODO: Implement Facebook login
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.person_outline), // Guest icon
+                    onPressed: () {
+                      // TODO: Implement Guest login
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
 
               // "Do not have an account?" Text Button
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text("Don't have an account?"),
                   TextButton(
                     child: Text(
-                      "Do not have an account?",
-                      style: TextStyle(color: Colors.grey),
+                      "Sign up",
+                      style: TextStyle(color: Colors.blue),
                     ),
                     onPressed: () {
                       Navigator.push(
@@ -77,24 +138,6 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ],
-              ),
-              SizedBox(height: 20),
-
-              // Login Button
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.brown[700],
-                  foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  textStyle: TextStyle(fontSize: 18),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                onPressed: () {
-                  // TODO: Implement login functionality
-                },
-                child: Text('Login'),
               ),
             ],
           ),

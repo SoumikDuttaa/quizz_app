@@ -20,11 +20,56 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Column(
           children: <Widget>[
             // Image
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Replace with your image URL
+            StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                int _selectedAvatarIndex = 0;
+                List<String> avatars = [
+                  'https://via.placeholder.com/150',
+                  'https://via.placeholder.com/150',
+                  'https://via.placeholder.com/150',
+                  'https://via.placeholder.com/150',
+                  'https://via.placeholder.com/150',
+                ];
+
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_back_ios),
+                          onPressed: () {
+                            setState(() {
+                              _selectedAvatarIndex = (_selectedAvatarIndex - 1 + avatars.length) % avatars.length;
+                            });
+                          },
+                        ),
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(avatars[_selectedAvatarIndex]), // Replace with your image URL
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.arrow_forward_ios),
+                          onPressed: () {
+                            setState(() {
+                              _selectedAvatarIndex = (_selectedAvatarIndex + 1) % avatars.length;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Handle avatar selection
+                      },
+                      child: Text('Select'),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                );
+              },
             ),
-            SizedBox(height: 20),
 
             // Name
             Align(
