@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sing_up.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -6,71 +7,99 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  String? _email, _password;
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text('Login'),
-        backgroundColor: Colors.blue[700],
-      ),
+      backgroundColor: Colors.white,
       body: Center(
-        child: Card(
-          margin: EdgeInsets.all(20),
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Profile Icon
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.pink[100],
+                child: Icon(
+                  Icons.person_outline,
+                  size: 50,
+                  color: Colors.brown,
+                ),
+              ),
+              SizedBox(height: 30),
+
+              // Employee ID Text Field
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Employee ID',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+
+              // Password Text Field
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+                obscureText: _obscurePassword,
+              ),
+              SizedBox(height: 8),
+
+              // "Do not have an account?" Text Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
+                  TextButton(
+                    child: Text(
+                      "Do not have an account?",
+                      style: TextStyle(color: Colors.grey),
                     ),
-                    validator: (input) =>
-                        input != null && !input.contains('@') ? 'Invalid Email' : null,
-                    onSaved: (input) => _email = input,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
+                    },
                   ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      border: OutlineInputBorder(),
-                    ),
-                    obscureText: true,
-                    validator: (input) =>
-                        input != null && input.length < 6 ? 'Must be at least 6 characters' : null,
-                    onSaved: (input) => _password = input,
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue[700],
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: _submit,
-                    child: Text('Login'),
-                  )
                 ],
               ),
-            ),
+              SizedBox(height: 20),
+
+              // Login Button
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.brown[700],
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  textStyle: TextStyle(fontSize: 18),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                onPressed: () {
+                  // TODO: Implement login functionality
+                },
+                child: Text('Login'),
+              ),
+            ],
           ),
         ),
       ),
     );
-  }
-
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      print('Email: $_email, password: $_password');
-      // You can add your login logic here
-    }
   }
 }
