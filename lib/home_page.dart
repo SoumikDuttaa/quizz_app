@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pvp_page.dart';
+import 'join_chamber_page.dart';
+import 'create_chamber_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -28,15 +31,24 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _buildButtonWithImage('PvP Online', 'https://i.imgur.com/73q7FcJ.png', () {
-              // Navigate to PvP Online page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PvPPage()),
+              );
             }),
             SizedBox(height: 20),
             _buildButtonWithImage('Join Game', 'https://i.imgur.com/90K9p4P.png', () {
-              // Navigate to Join Game page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JoinChamberPage()),
+              );
             }),
             SizedBox(height: 20),
             _buildButtonWithImage('Create Game', 'https://i.imgur.com/ekDRh0F.png', () {
-              // Navigate to Create Game page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CreateChamberPage()),
+              );
             }),
             SizedBox(height: 20),
             Row(
