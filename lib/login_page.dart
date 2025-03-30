@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'sing_up.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -78,6 +79,18 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 obscureText: _obscurePassword,
+              ),
+              SizedBox(height: 20),
+
+              ElevatedButton(
+                onPressed: () {
+                  // Implement login functionality
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+                child: Text('Login'),
               ),
               SizedBox(height: 20),
 
