@@ -28,18 +28,22 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/magician.png', // Replace with your magician image
+              'lib/assests/hp.jpg', // Replace with your magician image
               width: 200,
               height: 200,
             ),
             SizedBox(height: 20),
             Text(
-              'Magic Quiz',
+              'Hogwarts welcomes you',
               style: TextStyle(
                 fontSize: 30,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(height: 20),
+            CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ],
         ),

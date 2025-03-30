@@ -30,21 +30,21 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _buildButtonWithImage('PvP Online', 'https://i.imgur.com/73q7FcJ.png', () {
+            _buildButtonWithImage('PvP Online', 'lib/assests/1v1.jpg', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => PvPPage()),
               );
             }),
             SizedBox(height: 20),
-            _buildButtonWithImage('Join Game', 'https://i.imgur.com/90K9p4P.png', () {
+            _buildButtonWithImage('Join Game', 'lib/assests/joinGame.jpg', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => JoinChamberPage()),
               );
             }),
             SizedBox(height: 20),
-            _buildButtonWithImage('Create Game', 'https://i.imgur.com/ekDRh0F.png', () {
+            _buildButtonWithImage('Create Game', 'lib/assests/createGame.jpg', () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CreateChamberPage()),
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonWithImage(String text, String imageUrl, VoidCallback onPressed) {
+  Widget _buildButtonWithImage(String text, String imagePath, VoidCallback onPressed) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
@@ -106,13 +106,13 @@ class HomePage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           image: DecorationImage(
-            image: NetworkImage(imageUrl),
+            image: AssetImage(imagePath),
             fit: BoxFit.cover,
           ),
         ),
         child: Container(
-          width: 200,
-          height: 100,
+          width: 300,
+          height: 200,
           alignment: Alignment.center,
           child: Text(
             text,

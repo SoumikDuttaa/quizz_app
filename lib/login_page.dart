@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               // Wizard Image
               Image.asset(
-                'assets/magician.png', // Replace with your magician image path
+                'lib/assests/dumbledoreAvatar.jpg',
                 width: 150,
                 height: 150,
               ),
